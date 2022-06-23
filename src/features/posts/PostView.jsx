@@ -5,9 +5,9 @@ import { fetchPosts } from './postSlice';
 const PostView = () => {
   const { isLoading, posts, error } = useSelector((state) => state.posts);
   // console.log(posts);
-  const disPosts = useDispatch();
+  const disPatch = useDispatch();
   useEffect(() => {
-    disPosts(fetchPosts());
+    disPatch(fetchPosts());
   }, []);
   return (
     <div>
@@ -15,12 +15,24 @@ const PostView = () => {
       {isLoading && <h3>Loading...</h3>}
       {error && <h3>{error}</h3>}
       <section>
-        {posts.slice(0,10).map((post) => {
+        {posts.slice(0, 10).map((post) => {
           return (
-            <article key={post.id} style={{marginTop:'50px',backgroundColor:'black',color:'white',width:'50%',textAlign:'center',margin:'0 auto',borderRadius:'8px',padding:'5px'}}>
-            <div >
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
+            <article
+              key={post.id}
+              style={{
+                backgroundColor: 'black',
+                color: 'white',
+                width: '50%',
+                textAlign: 'center',
+                margin: '0 auto',
+                borderRadius: '8px',
+                padding: '5px',
+                marginTop: '50px',
+              }}
+            >
+              <div>
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
               </div>
             </article>
           );
